@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
 import { Shield, RefreshCw, AlertTriangle, CheckCircle, XCircle, Zap, Lock, Server, Download } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
+import { CustomProgress } from '@/components/ui/custom-progress';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import DashboardLayout from '@/components/DashboardLayout';
@@ -265,7 +264,7 @@ const SystemSecurity = () => {
                 <div className="flex justify-center text-3xl font-bold mb-2">
                   {systemStatusMetrics.patchLevel}%
                 </div>
-                <Progress 
+                <CustomProgress 
                   value={systemStatusMetrics.patchLevel} 
                   className="h-3"
                   indicatorClassName={

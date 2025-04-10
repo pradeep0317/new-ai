@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Shield, User, BarChart3, Shield, AlertTriangle, Usb, Users, Settings, LogOut, Menu, X } from 'lucide-react';
+import { Shield, User, BarChart3, AlertTriangle, Usb, Users, Settings, LogOut, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import { useIsMobile } from '@/hooks/use-mobile';

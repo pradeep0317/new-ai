@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { AlertTriangle, ShieldCheck, Clock, Fingerprint, Usb, Monitor, User, FileText } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -188,14 +187,13 @@ const RiskAnalysis = () => {
                   <div className="w-full">
                     <Progress 
                       value={factor.score} 
-                      className="h-2"
-                      indicatorClassName={
+                      className={`h-2 ${
                         factor.score < 30
-                          ? 'bg-green-500'
+                          ? 'bg-green-500/20 [&>div]:bg-green-500'
                           : factor.score < 70
-                          ? 'bg-yellow-500'
-                          : 'bg-red-500'
-                      }
+                          ? 'bg-yellow-500/20 [&>div]:bg-yellow-500'
+                          : 'bg-red-500/20 [&>div]:bg-red-500'
+                      }`}
                     />
                   </div>
                   

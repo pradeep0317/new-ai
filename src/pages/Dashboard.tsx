@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Shield, AlertTriangle, Database, Usb, UserCheck, RefreshCw, Zap, ShieldAlert } from 'lucide-react';
 import { ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
@@ -7,10 +6,9 @@ import SecurityMetricCard from '@/components/SecurityMetricCard';
 import RiskScoreGauge from '@/components/RiskScoreGauge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
+import { CustomProgress } from '@/components/ui/custom-progress';
 import { useAuth } from '@/contexts/AuthContext';
 
-// Mock data for the dashboard
 const generateRandomData = () => {
   return {
     activeThreats: Math.floor(Math.random() * 10),
@@ -25,7 +23,6 @@ const generateRandomData = () => {
   };
 };
 
-// Set days for network activity
 const setDaysForData = (data: any) => {
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   return data.networkActivity.map((item: any, index: number) => ({
@@ -46,7 +43,6 @@ const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState(generateRandomData());
   const [isRefreshing, setIsRefreshing] = useState(false);
   
-  // Set days for initial data
   useEffect(() => {
     setDashboardData(prevData => ({
       ...prevData,
@@ -57,7 +53,6 @@ const Dashboard = () => {
   const refreshData = () => {
     setIsRefreshing(true);
     
-    // Simulate API call delay
     setTimeout(() => {
       const newData = generateRandomData();
       setDashboardData({
@@ -71,7 +66,6 @@ const Dashboard = () => {
   return (
     <DashboardLayout title="Security Dashboard">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Risk Score Card */}
         <Card className="col-span-1 md:col-span-1 border-mediguard-200 data-flow-bg">
           <CardHeader>
             <CardTitle>Overall Risk Score</CardTitle>
@@ -94,7 +88,7 @@ const Dashboard = () => {
                       : 'High Risk'}
                   </span>
                 </div>
-                <Progress
+                <CustomProgress
                   value={user?.riskScore}
                   className="h-2"
                   indicatorClassName={
@@ -110,7 +104,6 @@ const Dashboard = () => {
           </CardContent>
         </Card>
       
-        {/* Threat Distribution */}
         <Card className="col-span-1 md:col-span-2 border-mediguard-200">
           <CardHeader className="flex flex-row items-center justify-between">
             <div>
@@ -165,7 +158,6 @@ const Dashboard = () => {
         </Card>
       </div>
       
-      {/* Security Metrics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
         <SecurityMetricCard
           title="Active Threats"
@@ -204,7 +196,6 @@ const Dashboard = () => {
         />
       </div>
       
-      {/* Network Activity Graph */}
       <Card className="mt-6 border-mediguard-200">
         <CardHeader>
           <CardTitle>Network Activity Monitoring</CardTitle>
@@ -236,7 +227,6 @@ const Dashboard = () => {
         </CardContent>
       </Card>
       
-      {/* Additional Security Information */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
         <Card className="border-mediguard-200">
           <CardHeader>
@@ -251,7 +241,7 @@ const Dashboard = () => {
                 <span className="text-sm">Firewall</span>
                 <span className="text-sm font-medium text-green-500">Active</span>
               </div>
-              <Progress value={100} className="h-2" />
+              <CustomProgress value={100} className="h-2" />
             </div>
             
             <div>
@@ -259,7 +249,7 @@ const Dashboard = () => {
                 <span className="text-sm">Antivirus</span>
                 <span className="text-sm font-medium text-green-500">Protected</span>
               </div>
-              <Progress value={100} className="h-2" />
+              <CustomProgress value={100} className="h-2" />
             </div>
             
             <div>
@@ -267,7 +257,7 @@ const Dashboard = () => {
                 <span className="text-sm">Encryption</span>
                 <span className="text-sm font-medium text-green-500">Enabled</span>
               </div>
-              <Progress value={100} className="h-2" />
+              <CustomProgress value={100} className="h-2" />
             </div>
             
             <div>
@@ -275,7 +265,7 @@ const Dashboard = () => {
                 <span className="text-sm">Updates</span>
                 <span className="text-sm font-medium text-yellow-500">Available (3)</span>
               </div>
-              <Progress value={85} className="h-2" indicatorClassName="bg-yellow-500" />
+              <CustomProgress value={85} className="h-2" indicatorClassName="bg-yellow-500" />
             </div>
           </CardContent>
         </Card>
